@@ -1,0 +1,165 @@
+body {
+  background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/078/324/original/odenwald-germany-is-pure-nature.jpg?1682173940);
+  background-size: cover;
+  font-family: "Lato", sans-serif;
+}
+
+h1 {
+  color: #eb9c5c;
+  margin: 0 auto;
+  width: 300px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 45px;
+  display: block;
+  padding: 15px;
+}
+
+h2 {
+  text-align: center;
+  color: #53917e;
+  font-size: medium;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+p {
+  color: #868e96;
+  font-size: small;
+}
+
+hr {
+  color: #53917e;
+}
+
+img {
+  padding: 30px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+}
+
+a :hover {
+  color: grey;
+}
+
+.app {
+  background-color: #e3e3c2;
+  border-radius: 20px;
+  max-width: 750px;
+  margin-bottom: 70px;
+  margin-top: 70px;
+}
+
+.btn:hover {
+  background-color: #eea972;
+  transition: all 200ms ease-in-out;
+  border-radius: 20px;
+}
+
+.btn {
+  width: 60px;
+  position: relative;
+  left: -80px;
+  top: 25px;
+  font-size: 30px;
+  border-radius: 10px;
+}
+
+.btn-2 {
+  width: 90px;
+  position: relative;
+  bottom: 30px;
+  font-size: 15px;
+  border-radius: 10px;
+  background-color: #eea972;
+  color: black;
+}
+
+.btn-2:hover {
+  background-color: white;
+  color: black;
+  transition: all 200ms ease-in-out;
+  border-radius: 10px;
+}
+
+.form-control {
+  font-size: 15px;
+  width: 150px;
+  padding: 20px;
+  margin-bottom: 8px;
+}
+
+.actualdegrees {
+  font-size: 35px;
+  text-align: center;
+  color: black;
+}
+
+.weatherpicture {
+  font-size: 80px;
+  position: relative;
+  left: 15px;
+  top: -20px;
+}
+
+.city {
+  font-size: 35px;
+  position: relative;
+  left: 40px;
+}
+
+.weatherdescription {
+  font-size: 12px;
+  color: #e49759;
+  font-size: medium;
+}
+
+.date {
+  font-size: 20px;
+  position: relative;
+  left: 75px;
+  color: #53917e;
+}
+
+.maxtemp {
+  font-size: 14px;
+  color: black;
+}
+
+.mintemp {
+  font-size: 14px;
+}
+
+.weather_icon_next_days {
+  font-size: 30px;
+  position: relative;
+  top: 10px;
+}
+
+.details {
+  position: relative;
+  color: black;
+  font-size: 12px;
+  border-style: solid;
+  border-radius: 20px;
+  border-color: #53917e;
+  border-width: 2px;
+  padding: 15px;
+  width: 350px;
+  top: 40px;
+}
+
+.details_numbers {
+  position: relative;
+  left: -30px;
+}
+
+.footer {
+  position: relative;
+  color: #868e96;
+  font-size: 14px;
+}
