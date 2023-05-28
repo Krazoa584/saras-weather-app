@@ -89,6 +89,13 @@ function showDates(weatherdetails) {
   let weatherdescription = (document.querySelector(
     "#weatherdescription"
   ).innerHTML = weatherdetails.data.weather[0].description);
+
+  let weathericon = document.querySelector("#weathericon");
+  weathericon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${weatherdetails.data.weather[0].icon}@2x.png`
+  );
+  weathericon.setAttribute("alt", weatherdetails.data.weather[0].description);
 }
 
 function searchLocation(position) {

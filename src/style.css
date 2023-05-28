@@ -2,6 +2,7 @@ body {
   background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/078/324/original/odenwald-germany-is-pure-nature.jpg?1682173940);
   background-size: cover;
   font-family: "Lato", sans-serif;
+  text-transform: uppercase;
 }
 
 h1 {
@@ -99,11 +100,9 @@ a:hover {
   color: black;
 }
 
-.weatherpicture {
-  font-size: 80px;
-  position: relative;
-  left: 15px;
-  top: -20px;
+.weathericon {
+  font-size: 50px;
+  padding: 0;
 }
 
 .city {
