@@ -43,6 +43,32 @@ if (minutes < 10) {
   span.innerHTML = `${day}, ${date} ${month} ${year}, ${hours}:0${minutes}`;
 }
 
+//forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Sun", "Mon", "Tue", "Wed"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col">
+      ${day}
+      <p class="weather_icon_next_days">🌧️</p>
+      <p>
+        <span class="maxtemp">7°C </span>
+        <span class="mintemp"> | 4°C</span>
+        </p>
+  `;
+
+    forecastHTML = forecastHTML + `</div>`;
+    forecastElement.innerHTML = forecastHTML;
+  });
+}
+
+displayForecast();
+
 //search button
 let searchButton = document.querySelector("#search-button");
 searchButton.addEventListener("click", searchCityButton);
@@ -115,5 +141,5 @@ function SearchCurrentLocation(location) {
 let button = document.querySelector("#btncurrentlocation");
 btncurrentlocation.addEventListener("click", SearchCurrentLocation);
 
-search("Vienna");
 //current Location
+search("Vienna");
