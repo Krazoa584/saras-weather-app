@@ -67,8 +67,6 @@ function displayForecast() {
   });
 }
 
-displayForecast();
-
 //search button
 let searchButton = document.querySelector("#search-button");
 searchButton.addEventListener("click", searchCityButton);
@@ -140,6 +138,15 @@ function SearchCurrentLocation(location) {
 
 let button = document.querySelector("#btncurrentlocation");
 btncurrentlocation.addEventListener("click", SearchCurrentLocation);
+
+//forecast API call
+function getForecast(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiKey = `99495e1ca3e445a51487c94ad1c48fde`;
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
 //current Location
 search("Vienna");
