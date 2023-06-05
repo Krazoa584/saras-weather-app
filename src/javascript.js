@@ -43,25 +43,50 @@ if (minutes < 10) {
   span.innerHTML = `${day}, ${date} ${month} ${year}, ${hours}:0${minutes}`;
 }
 
-//forecast
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+  return days[day];
+}
+
+//forecast API call
+function getForecast(response) {
+  let lat = response.lat;
+  let lon = response.lon;
+  let apiKey = `f5e814a04eddfab1740f07bf0328eee2`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+//forecast
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  let forecast = response.data.daily;
   let forecastHTML = `<div class="row">`;
-  let days = ["Sun", "Mon", "Tue", "Wed"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 3) {
+      forecastHTML =
+        forecastHTML +
+        `
     <div class="col">
-      ${day}
-      <p class="weather_icon_next_days">🌧️</p>
+      ${formatDay(forecastDay.dt)}
+      <p class="weather_icon_next_days">
+      <img
+      src="https://openweathermap.org/img/wn/${
+        forecastDay.weather[0].icon
+      }@2x.png"
+      width=120;
+      />
+      </p>
       <p>
-        <span class="maxtemp">7°C </span>
-        <span class="mintemp"> | 4°C</span>
+        <span class="maxtemp">${Math.round(forecastDay.temp.max)} </span>
+        <span class="mintemp"> | ${Math.round(forecastDay.temp.min)}°C</span>
         </p>
   `;
-
+    }
     forecastHTML = forecastHTML + `</div>`;
     forecastElement.innerHTML = forecastHTML;
   });
@@ -88,7 +113,7 @@ function searchCity(event) {
 }
 
 function search(city) {
-  let key = `99495e1ca3e445a51487c94ad1c48fde`;
+  let key = `f5e814a04eddfab1740f07bf0328eee2`;
   let mapUrl = `https://api.openweathermap.org/data/2.5/weather?q=`;
   let url = `${mapUrl}${city}&appid=${key}&units=metric`;
   axios.get(url).then(showDates);
@@ -101,18 +126,17 @@ function showDates(weatherdetails) {
   changeDegrees.innerHTML = `${degrees} °C`;
   let city = document.querySelector("#city-name");
   city.innerHTML = weatherdetails.data.name;
-  let feelslike = (document.querySelector("#feelslike").innerHTML = Math.round(
+  document.querySelector("#feelslike").innerHTML = Math.round(
     weatherdetails.data.main.feels_like
-  ));
-  let windspeed = (document.querySelector("#windspeed").innerHTML = Math.round(
+  );
+  document.querySelector("#windspeed").innerHTML = Math.round(
     weatherdetails.data.wind.speed
-  ));
-  let humidity = (document.querySelector("#humidity").innerHTML = Math.round(
+  );
+  document.querySelector("#humidity").innerHTML = Math.round(
     weatherdetails.data.main.humidity
-  ));
-  let weatherdescription = (document.querySelector(
-    "#weatherdescription"
-  ).innerHTML = weatherdetails.data.weather[0].description);
+  );
+  document.querySelector("#weatherdescription").innerHTML =
+    weatherdetails.data.weather[0].description;
 
   let weathericon = document.querySelector("#weathericon");
   weathericon.setAttribute(
@@ -120,6 +144,8 @@ function showDates(weatherdetails) {
     `https://openweathermap.org/img/wn/${weatherdetails.data.weather[0].icon}@2x.png`
   );
   weathericon.setAttribute("alt", weatherdetails.data.weather[0].description);
+
+  getForecast(weatherdetails.data.coord);
 }
 
 function searchLocation(position) {
@@ -137,16 +163,6 @@ function SearchCurrentLocation(location) {
 }
 
 let button = document.querySelector("#btncurrentlocation");
-btncurrentlocation.addEventListener("click", SearchCurrentLocation);
+button.addEventListener("click", SearchCurrentLocation);
 
-//forecast API call
-function getForecast(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiKey = `99495e1ca3e445a51487c94ad1c48fde`;
-  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
-}
-
-//current Location
 search("Vienna");

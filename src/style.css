@@ -134,9 +134,9 @@ a:hover {
 }
 
 .weather_icon_next_days {
-  font-size: 30px;
-  position: relative;
-  top: 10px;
+  margin-left: -40px;
+  margin-bottom: -25px;
+  margin-top: -25px;
 }
 
 .details {
